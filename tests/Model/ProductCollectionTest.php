@@ -5,7 +5,7 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use PriceCalculator\Model\Product;
 use PriceCalculator\Model\ProductCollection;
-use PriceCalculator\Model\Tax;
+use PriceCalculator\Model\TaxRate;
 
 class ProductCollectionTest extends Testcase
 {
@@ -16,11 +16,11 @@ class ProductCollectionTest extends Testcase
         $this->assertEmpty($products->getIterator());
     }
 
-    public function testCollectionWithElements()
+    public function testCollectionWithProducts()
     {
         $products = new ProductCollection(
-            new Product('P1', 10.01, Tax::NORMAL_TAX),
-            new Product('P2', 10.02, Tax::NORMAL_TAX)
+            new Product('P1', 10.01, TaxRate::NORMAL_TAX),
+            new Product('P2', 10.02, TaxRate::NORMAL_TAX)
         );
 
         $this->assertCount(2, $products);
@@ -28,7 +28,7 @@ class ProductCollectionTest extends Testcase
 
     public function testAddProduct()
     {
-        $p1 = new Product('P1', 10.99, Tax::NORMAL_TAX);
+        $p1 = new Product('P1', 10.99, TaxRate::NORMAL_TAX);
 
         $products = new ProductCollection();
 

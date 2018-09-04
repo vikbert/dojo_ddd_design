@@ -47,8 +47,8 @@ final class Product
 
     public function setTax(int $tax): void
     {
-        if (Tax::REDUCED_TAX !== $tax && Tax::NORMAL_TAX !== $tax) {
-            throw new \InvalidArgumentException('Given Tax is not supported.');
+        if (TaxRate::REDUCED_TAX !== $tax && TaxRate::NORMAL_TAX !== $tax) {
+            throw new \InvalidArgumentException('Given TaxRate is not supported.');
         }
 
         $this->tax = $tax;

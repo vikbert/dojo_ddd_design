@@ -9,7 +9,7 @@ use IteratorAggregate;
 
 abstract class GenericCollection implements IteratorAggregate
 {
-    protected $elements;
+    protected $elements = [];
 
     public function toArray(): array
     {

@@ -5,7 +5,7 @@ declare(strict_types = 1);
 use PHPUnit\Framework\TestCase;
 use PriceCalculator\Model\Product;
 use PriceCalculator\Model\ProductCollection;
-use PriceCalculator\Model\Tax;
+use PriceCalculator\Model\TaxRate;
 use PriceCalculator\Service\PriceCalculator;
 
 class PriceCalculatorTest extends TestCase
@@ -27,8 +27,8 @@ class PriceCalculatorTest extends TestCase
     public function testCalculateNetTotalReturnsCorrectSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, Tax::NORMAL_TAX),
-            new Product('P2', 100.00, Tax::REDUCED_TAX)
+            new Product('P1', 100.00, TaxRate::NORMAL_TAX),
+            new Product('P2', 100.00, TaxRate::REDUCED_TAX)
         );
         $result = $this->service->calculateNetTotal($products);
 
@@ -45,8 +45,8 @@ class PriceCalculatorTest extends TestCase
     public function testCalculateGrossTotalReturnsSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, Tax::NORMAL_TAX),
-            new Product('P2', 100.00, Tax::REDUCED_TAX)
+            new Product('P1', 100.00, TaxRate::NORMAL_TAX),
+            new Product('P2', 100.00, TaxRate::REDUCED_TAX)
         );
         $result = $this->service->calculateGrossTotal($products);
 
