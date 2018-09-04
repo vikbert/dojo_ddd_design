@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace PriceCalculator\Entity;
+namespace PriceCalculator\Model;
 
 final class Product
 {

@@ -3,8 +3,8 @@
 declare(strict_types = 1);
 
 use PHPUnit\Framework\TestCase;
-use PriceCalculator\Entity\Product;
-use PriceCalculator\Entity\Tax;
+use PriceCalculator\Model\Product;
+use PriceCalculator\Model\Tax;
 
 class ProductTest extends TestCase
 {
