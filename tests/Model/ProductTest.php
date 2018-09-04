@@ -19,4 +19,31 @@ class ProductTest extends TestCase
         $product = new Product('foo', 23.45, TAX::REDUCED_TAX);
         $this->assertSame(23.45, $product->getNetPrice(), 'net price should be same as price');
     }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Name should not be empty.
+     */
+    public function testEmptyName()
+    {
+        $product = new Product(' ', 12.00, Tax::NORMAL_TAX);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Price should not be zero.
+     */
+    public function testPriceIsZero()
+    {
+        $product = new Product('P1', 0.00, Tax::NORMAL_TAX);
+    }
+
+    /**
+     * @expectedException \InvalidArgumentException
+     * @expectedExceptionMessage Given Tax is not supported.
+     */
+    public function testInvalidTax()
+    {
+        $product = new Product('P1', 9.99, 99999);
+    }
 }

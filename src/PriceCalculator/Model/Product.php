@@ -12,24 +12,9 @@ final class Product
 
     public function __construct(string $name, float $price, int $tax)
     {
-        $this->name = $name;
-        $this->price = $price;
-        $this->tax = $tax;
-    }
-
-    public function getName(): string
-    {
-        return $this->name;
-    }
-
-    public function getPrice(): float
-    {
-        return $this->price;
-    }
-
-    public function getTax(): int
-    {
-        return $this->tax;
+        $this->setName($name);
+        $this->setPrice($price);
+        $this->setTax($tax);
     }
 
     public function getNetPrice(): float
@@ -40,5 +25,32 @@ final class Product
     public function getGrossPrice(): float
     {
         return (1 + $this->tax / 100) * $this->price;
+    }
+
+    public function setName(string $name): void
+    {
+        if (empty(trim($name))) {
+            throw new \InvalidArgumentException('Name should not be empty.');
+        }
+
+        $this->name = $name;
+    }
+
+    public function setPrice(float $price): void
+    {
+        if (0.0 === $price) {
+            throw new \InvalidArgumentException('Price should not be zero.');
+        }
+
+        $this->price = $price;
+    }
+
+    public function setTax(int $tax): void
+    {
+        if (Tax::REDUCED_TAX !== $tax && Tax::NORMAL_TAX !== $tax) {
+            throw new \InvalidArgumentException('Given Tax is not supported.');
+        }
+
+        $this->tax = $tax;
     }
 }
