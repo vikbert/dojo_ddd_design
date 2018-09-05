@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace PriceCalculator\Service;
+namespace Application\Service;
 
-use PriceCalculator\Model\ProductCollection;
+use Application\Model\ProductCollection;
 
 interface PricingInterface
 {

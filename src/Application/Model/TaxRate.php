@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace PriceCalculator\Model;
+namespace Application\Model;
 
 final class TaxRate
 {

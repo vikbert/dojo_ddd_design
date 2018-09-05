@@ -1,10 +1,14 @@
 {
     "autoload": {
         "psr-4": {
-            "PriceCalculator\\": "src/PriceCalculator"
+            "Application\\": "src/Application",
+            "Domain\\": "src/Domain",
+            "Infrastructure\\": "src/Infrastructure"
         },
         "classmap": [
-            "src/PriceCalculator"
+            "src/Application",
+            "src/Domain",
+            "src/Infrastructure"
         ]
     },
     "require-dev": {
