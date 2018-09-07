@@ -11,21 +11,21 @@ final class PriceCalculator implements PricingInterface
 {
     private const PRECISION = 2;
 
-    public function calculateNetTotal(ProductCollection $productCollection): float
+    public function calculateNetTotal(ProductCollection $productCollection): int
     {
         $result = array_sum(array_map(function (Product $product) {
-            return $product->getNetPrice();
+            return $product->getNetPrice()->get();
         }, $productCollection->toArray()));
 
-        return round($result, self::PRECISION);
+        return $result;
     }
 
-    public function calculateGrossTotal(ProductCollection $productCollection): float
+    public function calculateGrossTotal(ProductCollection $productCollection): int
     {
         $result = array_sum(array_map(function (Product $product) {
-            return $product->getGrossPrice();
+            return $product->getGrossPrice()->get();
         }, $productCollection->toArray()));
 
-        return round($result, self::PRECISION);
+        return $result;
     }
 }

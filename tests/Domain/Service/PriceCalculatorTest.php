@@ -5,6 +5,7 @@ declare(strict_types = 1);
 use Domain\Entity\Product;
 use Domain\Entity\ProductCollection;
 use Domain\Service\PriceCalculator;
+use Domain\Value\Price;
 use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
@@ -25,35 +26,35 @@ class PriceCalculatorTest extends TestCase
     {
         $result = $this->service->calculateNetTotal(new ProductCollection());
 
-        $this->assertSame(0.00, $result);
+        $this->assertSame(0, $result);
     }
 
     public function testCalculateNetTotalReturnsCorrectSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, $this->normalTaxRate),
-            new Product('P2', 100.00, $this->reducedTaxRate)
+            new Product('P1', new Price(100), $this->normalTaxRate),
+            new Product('P2', new Price(100), $this->reducedTaxRate)
         );
         $result = $this->service->calculateNetTotal($products);
 
-        $this->assertSame(200.00, $result);
+        $this->assertSame(200, $result);
     }
 
     public function testCalculateGrossTotalReturnsZero()
     {
         $result = $this->service->calculateGrossTotal(new ProductCollection());
 
-        $this->assertSame(0.00, $result);
+        $this->assertSame(0, $result);
     }
 
     public function testCalculateGrossTotalReturnsSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, $this->normalTaxRate),
-            new Product('P2', 100.00, $this->reducedTaxRate)
+            new Product('P1', new Price(100), $this->normalTaxRate),
+            new Product('P2', new Price(100), $this->reducedTaxRate)
         );
         $result = $this->service->calculateGrossTotal($products);
 
-        $this->assertSame(226.00, $result);
+        $this->assertSame(226, $result);
     }
 }

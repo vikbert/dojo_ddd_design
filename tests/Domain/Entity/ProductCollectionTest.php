@@ -4,6 +4,7 @@ declare(strict_types = 1);
 
 use Domain\Entity\Product;
 use Domain\Entity\ProductCollection;
+use Domain\Value\Price;
 use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
@@ -28,8 +29,8 @@ class ProductCollectionTest extends Testcase
     public function testCollectionWithProducts()
     {
         $products = new ProductCollection(
-            new Product('P1', 10.01, $this->normalTaxRate),
-            new Product('P2', 10.02, $this->reducedTaxRate)
+            new Product('P1', new Price(1001), $this->normalTaxRate),
+            new Product('P2', new Price(1002), $this->reducedTaxRate)
         );
 
         $this->assertCount(2, $products);
@@ -37,7 +38,7 @@ class ProductCollectionTest extends Testcase
 
     public function testAddProduct()
     {
-        $p1 = new Product('P1', 10.99, $this->normalTaxRate);
+        $p1 = new Product('P1', new Price(1099), $this->normalTaxRate);
 
         $products = new ProductCollection();
 

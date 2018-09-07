@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace Domain\Entity;
 
+use Domain\Service\PriceConverter;
+use Domain\Value\Price;
 use Domain\Value\TaxRate;
 
 final class Product
@@ -12,21 +14,21 @@ final class Product
     private $price;
     private $tax;
 
-    public function __construct(string $name, float $price, TaxRate $tax)
+    public function __construct(string $name, Price $price, TaxRate $tax)
     {
         $this->setName($name);
         $this->setPrice($price);
         $this->tax = $tax;
     }
 
-    public function getNetPrice(): float
+    public function getNetPrice(): Price
     {
         return $this->price;
     }
 
-    public function getGrossPrice(): float
+    public function getGrossPrice(): Price
     {
-        return (1 + $this->tax->getValue() / 100) * $this->price;
+        return (new PriceConverter())->convertToGrossPrice($this->price, $this->tax);
     }
 
     public function setName(string $name): void
@@ -38,9 +40,9 @@ final class Product
         $this->name = $name;
     }
 
-    public function setPrice(float $price): void
+    public function setPrice(Price $price): void
     {
-        if (0.0 === $price) {
+        if (0 === $price->get()) {
             throw new \InvalidArgumentException('Price should not be zero.');
         }
 

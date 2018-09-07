@@ -8,7 +8,7 @@ use Domain\Entity\ProductCollection;
 
 interface PricingInterface
 {
-    public function calculateNetTotal(ProductCollection $productCollection): float;
+    public function calculateNetTotal(ProductCollection $productCollection): int;
 
-    public function calculateGrossTotal(ProductCollection $productCollection): float;
+    public function calculateGrossTotal(ProductCollection $productCollection): int;
 }

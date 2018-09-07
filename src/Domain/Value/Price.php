@@ -6,11 +6,11 @@ namespace Domain\Value;
 
 final class Price
 {
-    private $centAmount;
+    private $fractionalUnits;
 
-    public function __construct(int $centAmount)
+    public function __construct(int $fractionalUnits)
     {
-        $this->centAmount = $centAmount;
+        $this->fractionalUnits = $fractionalUnits;
     }
 
     public static function fromFractionalUnits(int $centAmount): self
@@ -23,13 +23,13 @@ final class Price
         return new self((int) bcmul((string) $euros, '100', 0));
     }
 
-    public function getCentAmount(): int
+    public function get(): int
     {
-        return $this->centAmount;
+        return $this->fractionalUnits;
     }
 
     public function __toString(): string
     {
-        return (string) $this->centAmount;
+        return (string) $this->fractionalUnits;
     }
 }

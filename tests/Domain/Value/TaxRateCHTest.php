@@ -5,7 +5,7 @@ declare(strict_types = 1);
 use Domain\Value\TaxRateCH;
 use PHPUnit\Framework\TestCase;
 
-class SwissTaxRateTest extends TestCase
+class TaxRateCHTest extends TestCase
 {
     public function testGetNormalTaxRate()
     {
