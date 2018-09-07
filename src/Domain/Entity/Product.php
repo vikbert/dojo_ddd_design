@@ -2,7 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Application\Model;
+namespace Domain\Entity;
+
+use Domain\Value\TaxRate;
 
 final class Product
 {
@@ -10,11 +12,11 @@ final class Product
     private $price;
     private $tax;
 
-    public function __construct(string $name, float $price, int $tax)
+    public function __construct(string $name, float $price, TaxRate $tax)
     {
         $this->setName($name);
         $this->setPrice($price);
-        $this->setTax($tax);
+        $this->tax = $tax;
     }
 
     public function getNetPrice(): float
@@ -24,7 +26,7 @@ final class Product
 
     public function getGrossPrice(): float
     {
-        return (1 + $this->tax / 100) * $this->price;
+        return (1 + $this->tax->getInt() / 100) * $this->price;
     }
 
     public function setName(string $name): void
@@ -43,14 +45,5 @@ final class Product
         }
 
         $this->price = $price;
-    }
-
-    public function setTax(int $tax): void
-    {
-        if (TaxRate::REDUCED_TAX !== $tax && TaxRate::NORMAL_TAX !== $tax) {
-            throw new \InvalidArgumentException('Given TaxRate is not supported.');
-        }
-
-        $this->tax = $tax;
     }
 }

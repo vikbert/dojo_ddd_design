@@ -2,9 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Application\Service;
+namespace Domain\Service;
 
-use Application\Model\ProductCollection;
+use Domain\Entity\ProductCollection;
 
 interface PricingInterface
 {

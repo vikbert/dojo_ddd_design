@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Application\Model;
+namespace Domain\Value;
 
 final class Price
 {
@@ -13,22 +13,17 @@ final class Price
         $this->centAmount = $centAmount;
     }
 
-    public static function fromCents(int $centAmount): self
+    public static function fromFractionalUnits(int $centAmount): self
     {
         return new self($centAmount);
     }
 
-    public static function fromEuros(float $euros): self
+    public static function fromMainUnits(float $euros): self
     {
         return new self((int) bcmul((string) $euros, '100', 0));
     }
 
     public function getCentAmount(): int
-    {
-        return $this->centAmount;
-    }
-
-    public function getAmount(): int
     {
         return $this->centAmount;
     }

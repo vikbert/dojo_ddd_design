@@ -2,19 +2,23 @@
 
 declare(strict_types = 1);
 
+use Domain\Entity\Product;
+use Domain\Entity\ProductCollection;
+use Domain\Service\PriceCalculator;
+use Domain\Value\GermanTaxRate;
 use PHPUnit\Framework\TestCase;
-use Application\Model\Product;
-use Application\Model\ProductCollection;
-use Application\Model\TaxRate;
-use Application\Service\PriceCalculator;
 
 class PriceCalculatorTest extends TestCase
 {
     private $service;
+    private $normalTaxRate;
+    private $reducedTaxRate;
 
     public function setUp()
     {
         $this->service = new PriceCalculator();
+        $this->normalTaxRate = GermanTaxRate::getNormalTaxRate();
+        $this->reducedTaxRate = GermanTaxRate::getReducedTaxRate();
     }
 
     public function testCalculateNetTotalReturnsZero()
@@ -27,8 +31,8 @@ class PriceCalculatorTest extends TestCase
     public function testCalculateNetTotalReturnsCorrectSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, TaxRate::NORMAL_TAX),
-            new Product('P2', 100.00, TaxRate::REDUCED_TAX)
+            new Product('P1', 100.00, $this->normalTaxRate),
+            new Product('P2', 100.00, $this->reducedTaxRate)
         );
         $result = $this->service->calculateNetTotal($products);
 
@@ -45,8 +49,8 @@ class PriceCalculatorTest extends TestCase
     public function testCalculateGrossTotalReturnsSum()
     {
         $products = new ProductCollection(
-            new Product('P1', 100.00, TaxRate::NORMAL_TAX),
-            new Product('P2', 100.00, TaxRate::REDUCED_TAX)
+            new Product('P1', 100.00, $this->normalTaxRate),
+            new Product('P2', 100.00, $this->reducedTaxRate)
         );
         $result = $this->service->calculateGrossTotal($products);
 

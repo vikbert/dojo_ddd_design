@@ -2,13 +2,22 @@
 
 declare(strict_types = 1);
 
+use Domain\Entity\Product;
+use Domain\Entity\ProductCollection;
+use Domain\Value\GermanTaxRate;
 use PHPUnit\Framework\TestCase;
-use Application\Model\Product;
-use Application\Model\ProductCollection;
-use Application\Model\TaxRate;
 
 class ProductCollectionTest extends Testcase
 {
+    private $normalTaxRate;
+    private $reducedTaxRate;
+
+    public function setUp()
+    {
+        $this->normalTaxRate = GermanTaxRate::getNormalTaxRate();
+        $this->reducedTaxRate = GermanTaxRate::getReducedTaxRate();
+    }
+
     public function testEmptyCollection()
     {
         $products = new ProductCollection();
@@ -19,8 +28,8 @@ class ProductCollectionTest extends Testcase
     public function testCollectionWithProducts()
     {
         $products = new ProductCollection(
-            new Product('P1', 10.01, TaxRate::NORMAL_TAX),
-            new Product('P2', 10.02, TaxRate::NORMAL_TAX)
+            new Product('P1', 10.01, $this->normalTaxRate),
+            new Product('P2', 10.02, $this->reducedTaxRate)
         );
 
         $this->assertCount(2, $products);
@@ -28,7 +37,7 @@ class ProductCollectionTest extends Testcase
 
     public function testAddProduct()
     {
-        $p1 = new Product('P1', 10.99, TaxRate::NORMAL_TAX);
+        $p1 = new Product('P1', 10.99, $this->normalTaxRate);
 
         $products = new ProductCollection();
 

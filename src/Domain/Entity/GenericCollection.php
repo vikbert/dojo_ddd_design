@@ -2,7 +2,7 @@
 
 declare(strict_types = 1);
 
-namespace Application\Model;
+namespace Domain\Entity;
 
 use ArrayIterator;
 use IteratorAggregate;

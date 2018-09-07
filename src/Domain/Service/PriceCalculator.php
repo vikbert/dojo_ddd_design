@@ -2,10 +2,10 @@
 
 declare(strict_types = 1);
 
-namespace Application\Service;
+namespace Domain\Service;
 
-use Application\Model\Product;
-use Application\Model\ProductCollection;
+use Domain\Entity\Product;
+use Domain\Entity\ProductCollection;
 
 final class PriceCalculator implements PricingInterface
 {

@@ -2,21 +2,30 @@
 
 declare(strict_types = 1);
 
+use Domain\Entity\Product;
+use Domain\Value\GermanTaxRate;
 use PHPUnit\Framework\TestCase;
-use Application\Model\Product;
-use Application\Model\TaxRate;
 
 class ProductTest extends TestCase
 {
+    private $germanNormalTaxRate;
+    private $germanReducedTaxRate;
+
+    public function setUp()
+    {
+        $this->germanReducedTaxRate = GermanTaxRate::getReducedTaxRate();
+        $this->germanNormalTaxRate = GermanTaxRate::getNormalTaxRate();
+    }
+
     public function testGetGrossPrice()
     {
-        $product = new Product('foo', 100.00, TaxRate::NORMAL_TAX);
+        $product = new Product('foo', 100.00, $this->germanNormalTaxRate);
         $this->assertSame(119.0, $product->getGrossPrice(), 'should return correct gross price');
     }
 
     public function testGetNetPrice()
     {
-        $product = new Product('foo', 23.45, TaxRate::REDUCED_TAX);
+        $product = new Product('foo', 23.45, $this->germanNormalTaxRate);
         $this->assertSame(23.45, $product->getNetPrice(), 'net price should be same as price');
     }
 
@@ -26,7 +35,7 @@ class ProductTest extends TestCase
      */
     public function testEmptyName()
     {
-        $product = new Product(' ', 12.00, TaxRate::NORMAL_TAX);
+        $product = new Product(' ', 12.00, $this->germanNormalTaxRate);
     }
 
     /**
@@ -35,15 +44,6 @@ class ProductTest extends TestCase
      */
     public function testPriceIsZero()
     {
-        $product = new Product('P1', 0.00, TaxRate::NORMAL_TAX);
-    }
-
-    /**
-     * @expectedException \InvalidArgumentException
-     * @expectedExceptionMessage Given TaxRate is not supported.
-     */
-    public function testInvalidTax()
-    {
-        $product = new Product('P1', 9.99, 99999);
+        $product = new Product('P1', 0.00, $this->germanNormalTaxRate);
     }
 }
