@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 use Domain\Entity\Product;
 use Domain\Entity\ProductCollection;
-use Domain\Value\GermanTaxRate;
+use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
 class ProductCollectionTest extends Testcase
@@ -14,8 +14,8 @@ class ProductCollectionTest extends Testcase
 
     public function setUp()
     {
-        $this->normalTaxRate = GermanTaxRate::getNormalTaxRate();
-        $this->reducedTaxRate = GermanTaxRate::getReducedTaxRate();
+        $this->normalTaxRate = TaxRateDE::getNormalTaxRate();
+        $this->reducedTaxRate = TaxRateDE::getReducedTaxRate();
     }
 
     public function testEmptyCollection()

@@ -5,7 +5,7 @@ declare(strict_types = 1);
 use Domain\Entity\Product;
 use Domain\Entity\ProductCollection;
 use Domain\Service\PriceCalculator;
-use Domain\Value\GermanTaxRate;
+use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
 class PriceCalculatorTest extends TestCase
@@ -17,8 +17,8 @@ class PriceCalculatorTest extends TestCase
     public function setUp()
     {
         $this->service = new PriceCalculator();
-        $this->normalTaxRate = GermanTaxRate::getNormalTaxRate();
-        $this->reducedTaxRate = GermanTaxRate::getReducedTaxRate();
+        $this->normalTaxRate = TaxRateDE::getNormalTaxRate();
+        $this->reducedTaxRate = TaxRateDE::getReducedTaxRate();
     }
 
     public function testCalculateNetTotalReturnsZero()

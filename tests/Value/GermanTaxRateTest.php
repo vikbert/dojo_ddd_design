@@ -2,20 +2,20 @@
 
 declare(strict_types = 1);
 
-use Domain\Value\GermanTaxRate;
+use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
 class GermanTaxRateTest extends TestCase
 {
     public function testGetNormalTaxRate()
     {
-        $germanNormalTaxRate = GermanTaxRate::getNormalTaxRate();
+        $germanNormalTaxRate = TaxRateDE::getNormalTaxRate();
         $this->assertSame("19", (string) $germanNormalTaxRate);
     }
 
     public function testGetReducedTaxRate()
     {
-        $germanReducedTaxRate = GermanTaxRate::getReducedTaxRate();
+        $germanReducedTaxRate = TaxRateDE::getReducedTaxRate();
         $this->assertSame("7", (string) $germanReducedTaxRate);
     }
 }

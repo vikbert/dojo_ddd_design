@@ -3,7 +3,7 @@
 declare(strict_types = 1);
 
 use Domain\Entity\Product;
-use Domain\Value\GermanTaxRate;
+use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
 
 class ProductTest extends TestCase
@@ -13,8 +13,8 @@ class ProductTest extends TestCase
 
     public function setUp()
     {
-        $this->germanReducedTaxRate = GermanTaxRate::getReducedTaxRate();
-        $this->germanNormalTaxRate = GermanTaxRate::getNormalTaxRate();
+        $this->germanReducedTaxRate = TaxRateDE::getReducedTaxRate();
+        $this->germanNormalTaxRate = TaxRateDE::getNormalTaxRate();
     }
 
     public function testGetGrossPrice()
