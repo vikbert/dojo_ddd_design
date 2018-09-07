@@ -26,7 +26,7 @@ final class Product
 
     public function getGrossPrice(): float
     {
-        return (1 + $this->tax->getInt() / 100) * $this->price;
+        return (1 + $this->tax->getValue() / 100) * $this->price;
     }
 
     public function setName(string $name): void

@@ -10,12 +10,12 @@ class GermanTaxRateTest extends TestCase
     public function testGetNormalTaxRate()
     {
         $germanNormalTaxRate = GermanTaxRate::getNormalTaxRate();
-        $this->assertSame(19, $germanNormalTaxRate->getInt());
+        $this->assertSame("19", (string) $germanNormalTaxRate);
     }
 
     public function testGetReducedTaxRate()
     {
         $germanReducedTaxRate = GermanTaxRate::getReducedTaxRate();
-        $this->assertSame(7, $germanReducedTaxRate->getInt());
+        $this->assertSame("7", (string) $germanReducedTaxRate);
     }
 }

@@ -6,6 +6,6 @@ namespace Domain\Value;
 
 final class GermanTaxRate extends TaxRate
 {
-    protected static $normalTaxRate = 19;
-    protected static $reducedTaxRate = 7;
+    protected static $normalTaxRate = 19.0;
+    protected static $reducedTaxRate = 7.0;
 }

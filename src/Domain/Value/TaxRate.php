@@ -7,10 +7,10 @@ namespace Domain\Value;
 class TaxRate
 {
     protected $taxRateValue;
-    protected static $normalTaxRate = 0;
-    protected static $reducedTaxRate = 0;
+    protected static $normalTaxRate = 0.0;
+    protected static $reducedTaxRate = 0.0;
 
-    private function __construct(int $value)
+    private function __construct(float $value)
     {
         $this->taxRateValue = $value;
     }
@@ -30,7 +30,7 @@ class TaxRate
         return (string) $this->taxRateValue;
     }
 
-    public function getInt(): int
+    public function getValue(): float
     {
         return $this->taxRateValue;
     }
