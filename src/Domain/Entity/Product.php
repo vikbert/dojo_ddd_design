@@ -42,7 +42,7 @@ final class Product
 
     public function setPrice(Price $price): void
     {
-        if (0 === $price->get()) {
+        if (0 === $price->toCents()) {
             throw new \InvalidArgumentException('Price should not be zero.');
         }
 

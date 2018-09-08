@@ -2,8 +2,8 @@
 
 declare(strict_types = 1);
 
+use Domain\Entity\Collection\ProductCollection;
 use Domain\Entity\Product;
-use Domain\Entity\ProductCollection;
 use Domain\Value\Price;
 use Domain\Value\TaxRateDE;
 use PHPUnit\Framework\TestCase;
@@ -13,7 +13,7 @@ class ProductCollectionTest extends Testcase
     private $normalTaxRate;
     private $reducedTaxRate;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->normalTaxRate = TaxRateDE::getNormalTaxRate();
         $this->reducedTaxRate = TaxRateDE::getReducedTaxRate();

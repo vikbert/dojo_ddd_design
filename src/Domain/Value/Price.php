@@ -23,7 +23,7 @@ final class Price
         return new self((int) bcmul((string) $euros, '100', 0));
     }
 
-    public function get(): int
+    public function toCents(): int
     {
         return $this->fractionalUnits;
     }

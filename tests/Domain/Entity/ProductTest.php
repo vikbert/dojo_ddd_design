@@ -12,7 +12,7 @@ class ProductTest extends TestCase
     private $germanNormalTaxRate;
     private $germanReducedTaxRate;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->germanReducedTaxRate = TaxRateDE::getReducedTaxRate();
         $this->germanNormalTaxRate = TaxRateDE::getNormalTaxRate();
@@ -21,13 +21,13 @@ class ProductTest extends TestCase
     public function testGetGrossPrice()
     {
         $product = new Product('foo', new Price(100), $this->germanNormalTaxRate);
-        $this->assertSame(119, $product->getGrossPrice()->get(), 'should return correct gross price');
+        $this->assertSame(119, $product->getGrossPrice()->toCents(), 'should return correct gross price');
     }
 
     public function testGetNetPrice()
     {
         $product = new Product('foo', new Price(2345), $this->germanNormalTaxRate);
-        $this->assertSame(2345, $product->getNetPrice()->get(), 'net price should be same as price');
+        $this->assertSame(2345, $product->getNetPrice()->toCents(), 'net price should be same as price');
     }
 
     /**

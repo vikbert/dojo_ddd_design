@@ -2,7 +2,9 @@
 
 declare(strict_types = 1);
 
-namespace Domain\Entity;
+namespace Domain\Entity\Collection;
+
+use Domain\Entity\Product;
 
 final class ProductCollection extends GenericCollection
 {

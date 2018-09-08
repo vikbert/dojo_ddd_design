@@ -4,17 +4,15 @@ declare(strict_types = 1);
 
 namespace Domain\Service;
 
+use Domain\Entity\Collection\ProductCollection;
 use Domain\Entity\Product;
-use Domain\Entity\ProductCollection;
 
 final class PriceCalculator implements PricingInterface
 {
-    private const PRECISION = 2;
-
     public function calculateNetTotal(ProductCollection $productCollection): int
     {
         $result = array_sum(array_map(function (Product $product) {
-            return $product->getNetPrice()->get();
+            return $product->getNetPrice()->toCents();
         }, $productCollection->toArray()));
 
         return $result;
@@ -23,7 +21,7 @@ final class PriceCalculator implements PricingInterface
     public function calculateGrossTotal(ProductCollection $productCollection): int
     {
         $result = array_sum(array_map(function (Product $product) {
-            return $product->getGrossPrice()->get();
+            return $product->getGrossPrice()->toCents();
         }, $productCollection->toArray()));
 
         return $result;

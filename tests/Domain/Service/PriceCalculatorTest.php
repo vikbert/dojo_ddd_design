@@ -2,8 +2,8 @@
 
 declare(strict_types = 1);
 
+use Domain\Entity\Collection\ProductCollection;
 use Domain\Entity\Product;
-use Domain\Entity\ProductCollection;
 use Domain\Service\PriceCalculator;
 use Domain\Value\Price;
 use Domain\Value\TaxRateDE;
@@ -15,7 +15,7 @@ class PriceCalculatorTest extends TestCase
     private $normalTaxRate;
     private $reducedTaxRate;
 
-    public function setUp()
+    protected function setUp()
     {
         $this->service = new PriceCalculator();
         $this->normalTaxRate = TaxRateDE::getNormalTaxRate();
