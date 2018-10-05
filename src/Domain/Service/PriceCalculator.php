@@ -9,6 +9,11 @@ use Domain\Entity\Product;
 
 final class PriceCalculator implements PricingInterface
 {
+    /**
+     * todo: priceCalculator should be able to calculate the product line item in a basket(warekorb)
+     * - replace ProductCollection with ProductLineItemCollection
+     * - ProductLineItem(Product $product, int $amount).
+     */
     public function calculateNetTotal(ProductCollection $productCollection): int
     {
         $result = array_sum(array_map(function (Product $product) {

@@ -8,6 +8,7 @@ final class Price
 {
     private $fractionalUnits;
 
+    //TODO: can be private constructor, because we have already both static methods
     public function __construct(int $fractionalUnits)
     {
         $this->fractionalUnits = $fractionalUnits;

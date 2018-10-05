@@ -10,8 +10,14 @@ class TaxRate
     protected static $normalTaxRate = 0.0;
     protected static $reducedTaxRate = 0.0;
 
+    public function getValue(): float
+    {
+        return $this->taxRateValue;
+    }
+
     private function __construct(float $value)
     {
+        //TODO: we need static method to create a new instance, because constructor is private
         $this->taxRateValue = $value;
     }
 
@@ -28,10 +34,5 @@ class TaxRate
     public function __toString(): string
     {
         return (string) $this->taxRateValue;
-    }
-
-    public function getValue(): float
-    {
-        return $this->taxRateValue;
     }
 }
